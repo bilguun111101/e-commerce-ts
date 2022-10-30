@@ -1,4 +1,4 @@
-import { createContext, FC } from "react";
+import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 interface DataProps {
     _id: string,
@@ -9,20 +9,19 @@ interface DataProps {
     __v?: string | number,
 }
 
-type Props = {
-    orders: DataProps,
-}
-
 interface Provider {
     children: JSX.Element
 }
 
-const Orders = createContext<Props | null>(null);
+const Orders = createContext<{ } | undefined>(undefined);
 
 export const OrdersProvider = ({ children }: Provider) => {
+    const [products, setProducts] = useState<DataProps[] | []>([]);
     return (
-        <Orders.Provider value={{  }}>
+        <Orders.Provider value={{ products, setProducts }}>
             { children }
         </Orders.Provider>
     )
 }
+
+export const useOrders = () => useContext(Orders);

@@ -6,19 +6,22 @@ import HomePage from './Home/HomePage'
 import Products from './Products/Products'
 import { BrowserRouter as MRouter, Routes, Route } from 'react-router-dom';
 import AddProducts from '../addProducts'
+import { OrdersProvider } from '../someContext/Orders'
 
 const Router: React.FC = () => {
   return (
-    <MRouter>
-        <Navbar />
-        <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='products' element={<Products />} />
-            <Route path='products/:id' element={<Detail />} />
-            <Route path='bag' element={<Bag />} />
-            <Route path='addData' element={<AddProducts />} />
-        </Routes>
-    </MRouter>
+    <OrdersProvider>
+      <MRouter>
+          <Navbar />
+          <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='products' element={<Products />} />
+              <Route path='products/:id' element={<Detail />} />
+              <Route path='bag' element={<Bag />} />
+              <Route path='addData' element={<AddProducts />} />
+          </Routes>
+      </MRouter>
+    </OrdersProvider>
   )
 }
 

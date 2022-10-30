@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useGetProductsData } from "../Functions/DataAction";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import { useOrders } from "../../someContext/Orders";
 
 interface getDataProps {
     _id: string,
@@ -16,12 +17,18 @@ interface getDataProps {
 const Detail: React.FC = () => {
     const { id } = useParams();
     const [count, setCount] = useState<number>(0);
+    const { products, setProducts } = useOrders();
     const [product, setProduct] = useState<getDataProps>();
     const data = useGetProductsData(`http://localhost:5000/products/${id}`);
     
     const reduceCount = () => {
         if(count === 0) return;
         setCount(count - 1);
+    }
+
+    const inBag = () => {
+        if(count === 0) return;
+        setProducts({...products, ...product, amount: count});
     }
 
     useEffect(() => {
@@ -52,7 +59,7 @@ const Detail: React.FC = () => {
                         </div>
                         <h2>{product?.price}</h2>
                     </div>
-                    <button>Add to List</button>
+                    <button onClick={inBag}>Add to List</button>
                 </div>
             </div>
         </section>
