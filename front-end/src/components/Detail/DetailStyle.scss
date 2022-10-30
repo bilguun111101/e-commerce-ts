@@ -1,0 +1,64 @@
+@import "../../styles/variables.scss";
+
+
+.detail-section {
+    width: 100%;
+    height: 100vh;
+    padding: $padding;
+    transition: .2s ease all;
+
+    @include breakpoint(md) {
+        padding: $smallPadding;
+    }
+
+    &__container {
+        gap: 2em;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding-top: 5em;
+        align-items: center;
+
+        @include breakpoint(md) {
+            padding-bottom: 5em;
+            flex-direction: column;
+        }
+
+        img {
+            width: auto;
+            height: 90%;
+        }
+
+        &__content {
+            gap: 2rem;
+            width: 100%;
+            height: 100%;
+            color: $text;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            h1 {
+                font-size: 3rem;
+                text-align: center;
+            }
+
+            button {
+                color: $text;
+                border: none;
+                font-size: 1.6rem;
+                background: transparent;
+            }
+
+            .product-amount {
+                gap: 0.5rem;
+                display: flex;
+
+                div {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@import "../../styles/variables.scss";
+
+.products-section {
+    width: 100%;
+    height: auto;
+    padding: $padding;
+    padding-top: 6rem;
+    transition: .2s ease all;
+
+    @include breakpoint(md) {
+        padding: $smallPadding;
+        padding-top: 6rem;
+    }
+
+    &__container {
+        gap: 1rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        transition: .2s ease all;
+
+        @include breakpoint(md) {
+            padding: $smallPadding;
+        }
+
+        .product-section {
+            width: 25%;
+            cursor: pointer;
+            padding: 0.5rem;
+            min-width: 200px;
+            position: relative;
+            border: 1px solid $text;
+            transition: .2s ease all;
+            
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            &__content {
+                top: 0%; 
+                left: 0%; 
+                right: 0%; 
+                bottom: 0%;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+                padding: .5rem;
+                
+                color: $text;
+                display: flex;
+                position: absolute;
+                align-items: flex-end;
+                transition: .2s ease all;
+                background: rgba(0, 0, 0, .7);
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &:active {
+                    background: rgba(0, 0, 0, .8);   
+                }
+            }
+        }
+    }
+}

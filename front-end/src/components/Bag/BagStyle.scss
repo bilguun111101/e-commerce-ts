@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.bag-section {
+    width: 100%;
+    color: $text;
+    height: 100vh;
+    padding: $padding;
+    transition: .2s ease all;
+
+    @include breakpoint(md) {
+        padding: $smallPadding;
+    }
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        padding-top: 8vh;
+
+        &__title {
+            font-size: 3rem;
+            transition: .2 ease all;
+    
+            @include breakpoint(md) {
+                font-size: 2.3rem;
+            }
+        }
+
+        @include breakpoint(md) {
+            padding-top: 10vh;
+        }
+
+        &__content {
+            width: 100%;
+            height: 90%;
+            padding: 1rem;
+            overflow: scroll;
+        }
+    }
+}
