@@ -1,25 +1,27 @@
-import { createContext, FC, ReactNode, useContext, useState } from "react";
-
-interface DataProps {
-    _id: string,
-    img: string,
-    name: string,
-    price: number,
-    brand: string,
-    __v?: string | number,
-}
+import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useState } from "react";
+import { DataProps } from "../components/Types/DataType";
 
 interface Provider {
     children: JSX.Element
 }
 
-const Orders = createContext<{ } | undefined>(undefined);
+type createContextTyoe = {
+    products: DataProps[],
+    setProducts: Dispatch<SetStateAction<DataProps[]>> | []
+}
+
+const Orders = createContext<createContextTyoe>({
+    products: [],
+    setProducts : []
+}
+
+);
 
 export const OrdersProvider = ({ children }: Provider) => {
     const [products, setProducts] = useState<DataProps[] | []>([]);
     return (
         <Orders.Provider value={{ products, setProducts }}>
-            { children }
+            {children}
         </Orders.Provider>
     )
 }

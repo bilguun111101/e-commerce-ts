@@ -1,16 +1,10 @@
 import React from 'react'
 import "../ProductsStyle.scss";
 import { useNavigate } from 'react-router-dom';
+import { DataProps } from "../../Types/DataType";
 
 interface Props {
-  data: {
-    _id: string,
-    img: string,
-    name: string,
-    price: number,
-    brand: string,
-    __v?: string | number,
-  }
+  data: DataProps
 }
 
 const Product: React.FC<Props> = props => {

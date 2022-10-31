@@ -2,18 +2,10 @@ import "./ProductsStyle.scss";
 import Product from './BuildProducts.tsx/Product';
 import React, { useEffect, useState } from 'react';
 import { useGetProductsData } from '../Functions/DataAction';
-
-interface getDataProps {
-  _id: string,
-  img: string,
-  name: string,
-  price: number,
-  brand: string,
-  __v?: string | number,
-}
+import { DataProps } from "../Types/DataType";
 
 const Products: React.FC = () => {
-  const [products, setProducts] = useState<getDataProps[]>();
+  const [products, setProducts] = useState<DataProps[]>();
   const data = useGetProductsData("http://localhost:5000/products");
   useEffect(() => {
     data.then(el => setProducts(el));

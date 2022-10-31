@@ -28,7 +28,8 @@ const Detail: React.FC = () => {
 
     const inBag = () => {
         if(count === 0) return;
-        setProducts({...products, ...product, amount: count});
+        // setProducts({...products, ...product, amount: count});
+        // setProducts([...product, ])
     }
 
     useEffect(() => {
