@@ -1,25 +1,17 @@
 import "./DetailStyle.scss";
 import { useParams } from 'react-router-dom';
+import { DataProps } from "../Types/DataType";
 import React, { useEffect, useState } from 'react';
-import { useGetProductsData } from "../Functions/DataAction";
-import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import { useOrders } from "../../someContext/Orders";
-
-interface getDataProps {
-    _id: string,
-    img: string,
-    name: string,
-    price: number,
-    brand: string,
-    __v?: string | number,
-}
+import { useGetDetailData } from "../Functions/DetailAction";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 const Detail: React.FC = () => {
     const { id } = useParams();
     const [count, setCount] = useState<number>(0);
     const { products, setProducts } = useOrders();
-    const [product, setProduct] = useState<getDataProps>();
-    const data = useGetProductsData(`http://localhost:5000/products/${id}`);
+    const [product, setProduct] = useState<DataProps>();
+    const data = useGetDetailData(`http://localhost:5000/products/${id}`);
     
     const reduceCount = () => {
         if(count === 0) return;
@@ -28,15 +20,14 @@ const Detail: React.FC = () => {
 
     const inBag = () => {
         if(count === 0) return;
-        // setProducts({...products, ...product, amount: count});
-        // setProducts([...product, ])
+        const order = { ...product, amount: count };
+        setCount(0);
     }
 
     useEffect(() => {
         (async() => {
             try {
-                const aProduct = await data;
-                setProduct(aProduct[0]);
+                setProduct(await data);
             } catch (error) {
                 console.log("error of Detail", error);
             }
@@ -58,8 +49,8 @@ const Detail: React.FC = () => {
                                 <AiOutlineArrowDown />
                             </button>
                         </div>
-                        <h2>{product?.price}</h2>
                     </div>
+                    <h2>{product?.price}</h2>
                     <button onClick={inBag}>Add to List</button>
                 </div>
             </div>

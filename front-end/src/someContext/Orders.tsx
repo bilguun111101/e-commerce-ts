@@ -1,4 +1,4 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 import { DataProps } from "../components/Types/DataType";
 
 interface Provider {

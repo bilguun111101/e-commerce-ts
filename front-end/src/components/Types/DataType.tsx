@@ -4,5 +4,6 @@ export interface DataProps {
     name: string,
     price: number,
     brand: string,
+    amount?: number,
     __v?: string | number,
 }
